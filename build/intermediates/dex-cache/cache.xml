@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/fed12396e882851f34ba01bbe18380fd3b79faf2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_d04d0830f1283bdc9b0d8b0157f3a9ef6b7c588c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/e91c76b4566937b98ca741dd45f0e729c1b2069c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_31b434d4ad1117f03cde1b71045423619d64df14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/Documents/TCC/FallDetection/openCVLibrary320/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8f05398308e20781c013cff57248f83dc720e4bd">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_1d4401ceedfdcb5966de074ead7c1836d44a7272.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/b8da13a4b5c5e2e22aa49c7b998f007f6e4ec13c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_5243c243aa8206dc78d74ed8361330d2ba46acc2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/d13cf1d54f27756ed769f5aee9fdec75c3b30c0f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_a398348840af26c11fc8f3262bac23fd25d46cac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/243f282e3eab591b26efbf941d2551bbdf4d4f40/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_879feedba51d8c331877946c27bbb41ca386088e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_93ce6864a2a87fb363322b8342dd807bb8df80f0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/e906ce966210d80d97c50e44774796a0fb9b7b17/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_d490f8a5d5baddcc908620da9485fad8db719818.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/8e72b5b3e2a4f9e0845362de0fda997c568a83d7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_e9d0923dd1a1c468ebeaf8d4df51b205d2c7d152.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_9308307d9532802213dc088c518859ea47859c6f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/c4bb86d6b4a9f052104be4992346b5ff6c496f06/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_0c8105dd392089f7c9687053223271e65a48f702.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/716b04a3bbdeead683ef78c276daad1d68e21670/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_f5f3dac3d6ffd5b8ecd2c06e3cc9af65133b5f11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/153d668ab324641bad8250aea6aadac65c67d38e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_636db254a4161c442d53e3368ede186e9ad8198a.jar" />
+    </item>
+
+</items>
