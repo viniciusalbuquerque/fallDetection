@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -16,10 +17,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import poli.upe.com.br.falldetection.classes.ClassificationThread;
+import poli.upe.com.br.falldetection.classes.DefiningInstancesThread;
+import poli.upe.com.br.falldetection.classes.ReadFilethread;
 import poli.upe.com.br.falldetection.classes.TrainThread;
 import poli.upe.com.br.falldetection.classes.interfaces.ClassificationThreadResult;
+import poli.upe.com.br.falldetection.classes.interfaces.DefineInstancesResult;
+import poli.upe.com.br.falldetection.classes.interfaces.FileReaderThreadResult;
 import poli.upe.com.br.falldetection.classes.interfaces.TrainThreadResult;
-import poli.upe.com.br.falldetection.utils.FileUtil;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.evaluation.NominalPrediction;
@@ -30,7 +34,11 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 public class MainActivity extends FragmentActivity implements SensorEventListener,
-        ClassificationThreadResult, TrainThreadResult {
+        ClassificationThreadResult, TrainThreadResult, FileReaderThreadResult, DefineInstancesResult {
+
+    private static final String FILENAME = "fall2.txt";
+    private static final String EVALUATION_KEY = "eva_key";
+    private static final String CLASS_KEY = "class_key";
 
     private TextView mTextViewAcelerometer;
     private TextView mTextViewGravity;
@@ -43,9 +51,10 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     private Classifier classifier;
     private Instances instances;
 
-    private ClassificationThread mClassificationThread;
-
+    private ReadFilethread readFilethread;
+    private DefiningInstancesThread instancesThread;
     private TrainThread trainThread;
+    private ClassificationThread mClassificationThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,35 +64,42 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         mTextViewGravity = (TextView) findViewById(R.id.main_textview_gravity);
         mTextVireGyroscope = (TextView) findViewById(R.id.main_textview_gyroscope);
 
-        BufferedReader bufferedReader = FileUtil.readDataFile(this, "fall2.txt");
-        instances = defineInstances(bufferedReader);
-
+        this.readFilethread = new ReadFilethread(this,this);
+        this.instancesThread = new DefiningInstancesThread(this);
         this.trainThread = new TrainThread(this);
 
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                readFilethread.execute(FILENAME);
+            }
+        }, 100);
     }
 
-    private Instances defineInstances(BufferedReader bufferedReader) {
-        Instances instances = null;
-        try {
-            instances = new Instances(bufferedReader);
-            instances.setClassIndex(instances.numAttributes() - 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return instances;
-    }
+//    private Instances defineInstances(BufferedReader bufferedReader) {
+//        Instances instances = null;
+//        try {
+//            instances = new Instances(bufferedReader);
+//            instances.setClassIndex(instances.numAttributes() - 1);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return instances;
+//    }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if(this.evaluation == null) {
-            if(this.trainThread != null) {
-                if(this.trainThread.getStatus() == AsyncTask.Status.PENDING) {
-                    this.trainThread.execute(this.instances);
-                }
-            }
-        }
+//        if(this.evaluation == null) {
+//            if(this.trainThread != null) {
+//                if(this.trainThread.getStatus() == AsyncTask.Status.PENDING) {
+//                    this.trainThread.execute(this.instances);
+//                }
+//            }
+//        }
         registerSensors();
     }
 
@@ -250,6 +266,21 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 //                    SensorManager.SENSOR_DELAY_NORMAL);
 //            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),
 //                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    public void readerResult(BufferedReader bufferedReader) {
+        if(bufferedReader != null) {
+            this.instancesThread.execute(bufferedReader);
+        }
+    }
+
+    @Override
+    public void definingInstancesResult(Instances instances) {
+        if(instances != null) {
+            this.instances = instances;
+            this.trainThread.execute(this.instances);
         }
     }
 }
