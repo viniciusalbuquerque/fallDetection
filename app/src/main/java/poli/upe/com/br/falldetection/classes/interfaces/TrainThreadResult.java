@@ -1,8 +1,9 @@
 package poli.upe.com.br.falldetection.classes.interfaces;
 
-/**
- * Created by Vinicius on 6/8/17.
- */
+import weka.classifiers.Classifier;
+import weka.classifiers.Evaluation;
 
 public interface TrainThreadResult {
+
+    public void onPostTraining(boolean hasErrors, Evaluation evaluation, Classifier classifier);
 }
