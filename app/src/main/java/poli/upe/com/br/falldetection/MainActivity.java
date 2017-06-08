@@ -7,7 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -29,7 +29,7 @@ import weka.core.FastVector;
 import weka.core.Instance;
 import weka.core.Instances;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener,
+public class MainActivity extends FragmentActivity implements SensorEventListener,
         ClassificationThreadResult, TrainThreadResult {
 
     private TextView mTextViewAcelerometer;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private ClassificationThread mClassificationThread;
 
-//    private Thread thread;
+    private TrainThread trainThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +58,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         BufferedReader bufferedReader = FileUtil.readDataFile(this, "fall2.txt");
         instances = defineInstances(bufferedReader);
 
-        new TrainThread(this).execute(instances);
-
-//        train();
-//
-//        if(this.evaluation != null) {
-//            double v = calculateAccuracy(this.evaluation.predictions());
-//            this.mTextViewGravity.setText(String.valueOf(v));
-//
-//        }
-//
-//        this.values = new ArrayList<>();
-//        this.mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        this.trainThread = new TrainThread(this);
 
     }
-
 
     private Instances defineInstances(BufferedReader bufferedReader) {
         Instances instances = null;
@@ -85,33 +73,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return instances;
     }
 
-//    private void train() {
-//        Log.d("ClassificationT", "entrou!");
-//            if(this.evaluation == null) {
-//                try {
-//                    if(this.classifier == null) {
-//                        this.classifier = new J48();
-//                    }
-//                    this.evaluation = new Evaluation(instances);
-//                    this.classifier.buildClassifier(instances);
-//                    this.evaluation.evaluateModel(this.classifier, instances);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//    }
-
     @Override
     protected void onResume() {
         super.onResume();
-        if(mSensorManager != null) {
-//            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),
-//                    SensorManager.SENSOR_DELAY_NORMAL);
-            mSensorManager.registerListener(this,
-                    mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-//            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
-//                    SensorManager.SENSOR_DELAY_NORMAL);
+
+        if(this.evaluation == null) {
+            if(this.trainThread != null) {
+                if(this.trainThread.getStatus() == AsyncTask.Status.PENDING) {
+                    this.trainThread.execute(this.instances);
+                }
+            }
         }
+        registerSensors();
     }
 
     @Override
@@ -213,12 +186,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             this.mClassificationThread.execute(instance);
                         }
                     }
-//                    if(this.mClassificationThread != null) {
-//                        if(this.mClassificationThread.getStatus() != AsyncTask.Status.RUNNING) {
-//                            this.mClassificationThread.execute(instance);
-//                        }
-//                    }
-//                    executeThreadOfClassification(instance);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -228,33 +195,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         String text = String.format("------Acelerometer------\nX:%s\nY:%s\nZ:%s", String.valueOf(x), String.valueOf(y), String.valueOf(z));
         mTextViewAcelerometer.setText(text);
     }
-
-//    private void executeThreadOfClassification(final Instance instance) {
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                classify(instance);
-//            }
-//        };
-//
-//        this.thread = new Thread(runnable);
-//        this.thread.run();
-//    }
-
-//    private void classify(Instance instance) {
-//        if(this.evaluation != null && this.classifier != null) {
-//            try {
-//                instance.setDataset(this.instances);
-//                double v1 = this.classifier.classifyInstance(instance);
-////                double v = this.evaluation.evaluateModelOnceAndRecordPrediction(this.classifier,instance);
-//
-//                this.mTextVireGyroscope.setText(String.valueOf(v1));
-//                this.thread.interrupt();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     public static double calculateAccuracy(FastVector predictions) {
         double correct = 0;
@@ -277,7 +217,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onPostExecution(Double classification) {
         this.mTextVireGyroscope.setText(String.valueOf(classification));
+        if(classification != 1) {
+            this.mTextViewAcelerometer.setText("Queda!");
+            Log.d("Classification", "Queda!");
+        }
         Log.d("Classification", String.valueOf(classification));
+
     }
 
     @Override
@@ -293,9 +238,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
             this.values = new ArrayList<>();
             this.mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        } else {
-
+            registerSensors();
         }
+    }
 
+    private void registerSensors() {
+        if(mSensorManager != null) {
+            mSensorManager.registerListener(this,
+                    mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), 10);
+//            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
+//                    SensorManager.SENSOR_DELAY_NORMAL);
+//            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),
+//                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 }

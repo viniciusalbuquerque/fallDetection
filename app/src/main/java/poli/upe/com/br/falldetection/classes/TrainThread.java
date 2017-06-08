@@ -22,9 +22,6 @@ public class TrainThread extends AsyncTask<Instances, Integer, Integer> {
 
     @Override
     protected Integer doInBackground(Instances... instances) {
-        if(this.evaluation == null || this.classifier == null) {
-            return -1;
-        }
         return train(instances[0]);
     }
 

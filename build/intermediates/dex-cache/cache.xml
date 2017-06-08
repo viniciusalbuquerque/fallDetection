@@ -3,12 +3,39 @@
 
     <item
         is-multidex="false"
+        jar="/Users/Vinicius/.gradle/caches/modules-2/files-2.1/io.realm/realm-annotations/3.3.1/bacd2ccd9a7f55c4205e02ad4d9183813d0bdcc3/realm-annotations-3.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bacd2ccd9a7f55c4205e02ad4d9183813d0bdcc3">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/realm-annotations-3.3.1_081994f47117d0da2fb2ea84e6687e30aad4727a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/c17f2bc6be465c2b14b95ae6c11b545a702ae845/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="07d6ee506b0d643cac58d5f1a514a802d359dc87">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_01fbd482ad1701648172558472a34cbfa63cbe1a.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/Vinicius/Documents/TCC/FallDetection/app/libs/wekaSTRIPPED.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="1d553332d3346a8efe1d52000973115cc5ef975d">
         <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/wekaSTRIPPED_f0fe1ef47994b73d2a951b06c4ddb07b4491c6ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Vinicius/.android/build-cache/5298b9db4e3ca9b571bde6631428db41f5cac918/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b64dd5f01bc37de289f90fd59299b0c76d119611">
+        <dex dex="/Users/Vinicius/Documents/TCC/FallDetection/app/build/intermediates/pre-dexed/debug/classes_a090a6b315190ee8bd35c512f5380ecdc1c5ee09.jar" />
     </item>
 
 </items>
